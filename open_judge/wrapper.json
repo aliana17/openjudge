@@ -1,0 +1,5 @@
+{
+    "python": "python {code_file}",
+    "python3": "python {code_file} < {input_file}",
+    "gcc": "cp {code_file} {code_file}.c && (gcc {code_file}.c -o {code_file}.o && {code_file}.o <{input_file})"
+}
