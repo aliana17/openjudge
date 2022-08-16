@@ -15,3 +15,6 @@ An offline platform to host contest
   - [ ] On compile only output is visible to user
   - [ ] on submit button the code is checked against set of test cases. Use pytest 
   - [ ] Return the count of test cases passed. 
+- [ ] when the user register, main server will validate if user is giving the test first time or not. 
+
+
