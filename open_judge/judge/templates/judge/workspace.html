@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+        <title>Open Judge</title>
+        <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    </head>
+    <body>
+       <div>
+            <center><h1>Coding contest!!</h1></center>
+            <hr>
+            <div x-data="{
+                q_id: 1,
+                path: /open_judge/questions/,
+                
+                get gsc(){
+                    if (this.q_id == 0 || this.q_id > 3){
+                        this.q_id = 1
+                    }
+                    document.getElementById('output-div').value=''
+                    document.getElementById('code').value=''
+                }
+            }">
+            <h4>Problem</h4>
+            {{d_path}}
+                
+                <div hx-get="/question/" hx-trigger="load"></div>
+                <form hx-post="{% url 'judge:handle' %}" hx-swap="innerHTML" hx-target="#output-div">
+                    <hr>
+                    <input name="language" value="python"><br>
+                    <textarea id="code" name="code" placeholder="Enter your code here" style="height:400px; width:600px"></textarea><br>
+                    <button name="compile">Compile and run</button>
+                    <button name="submit">Submit</button>
+                    <hr>
+                </form>
+                <button @click="this.q_id-1">Previous</button> &nbsp; &nbsp; <button @click="this.q_id+1">Next</button>
+                <fieldset>
+                    <legend>Output</legend>
+                    <textarea style="height:100px; width:800px" id="output-div">
+                    </textarea>
+                </fieldset>
+            </div>
+       </div>
+    </body>
+</html>
