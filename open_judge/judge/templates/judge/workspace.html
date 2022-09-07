@@ -11,18 +11,10 @@
             <hr>
             <div x-data="{
                 q_id: 1,
-                path: /open_judge/questions/,
-                
-                get gsc(){
-                    if (this.q_id == 0 || this.q_id > 3){
-                        this.q_id = 1
-                    }
-                    document.getElementById('output-div').value=''
-                    document.getElementById('code').value=''
-                }
             }">
             <h4>Problem</h4>
-                <div hx-get="/question/" hx-trigger="load"></div>
+                {% load static %}
+                <div hx-get="{% static 'judge/questions/1/statement' %}" hx-trigger="load" id="startdiv"></div>
                 <form hx-post="{% url 'judge:handle' %}" hx-swap="innerHTML" hx-target="#output-div">
                     <hr>
                     <input name="language" value="python"><br>
